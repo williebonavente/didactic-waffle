@@ -6,7 +6,9 @@ interface MongooseConnection {
     conn: Mongoose | null;
     promise: Promise<Mongoose> | null;
 }
-
+declare global {
+    var moongose: MongooseConnection | undefined;
+}
 let cached: MongooseConnection = (global as any).mongoose;
 
 if (!cached) {
@@ -24,6 +26,6 @@ export const connectToDatabase = async () => {
     (MONGODB_URL, { dbName: 'imaginify', bufferCommands: false})
 
     cached.conn = await cached.promise;
-    
+
     return cached.conn;
 }

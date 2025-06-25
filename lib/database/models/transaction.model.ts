@@ -24,5 +24,7 @@ const TransactionSchema = new Schema({
     buyer: {
         type: Schema.Types.ObjectId,
     }
-
 })
+
+const Transaction = models?.Transaction || model("Transaction", TransactionSchema);
+export default Transaction;

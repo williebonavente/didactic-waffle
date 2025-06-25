@@ -6,9 +6,9 @@ export interface IImage extends Document {
     publicId: string;
     secureUrl: string;
     width: number;
-    height: Number;
+    height: number;
     config: object;
-    transformationUrl?: String;
+    transformationUrl?: string;
     aspectRatio: string;
     color?: string;
     prompt?: string;
