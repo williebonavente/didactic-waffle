@@ -34,7 +34,7 @@ const shimmer = (w: number, h: number) => `
       <stop stop-color="#68769e" offset="50%" />
       <stop stop-color="#7986AC" offset="70%" />
     </linearGradient>
-  </defs>
+  </defs>x
   <rect width="${w}" height="${h}" fill="#7986AC" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
   <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
