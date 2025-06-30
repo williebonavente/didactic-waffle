@@ -11,7 +11,7 @@ import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 import { redirect } from "next/navigation";
 
 const ImageDetails = async ({ params }: SearchParamProps) => {
-  const id  = await params?.id;
+  const id  = (await params)?.id;
   if (!id) {
     redirect('/404');
   }
