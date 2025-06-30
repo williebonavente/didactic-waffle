@@ -33,16 +33,16 @@ module.exports = {
   			dark: {
   				'400': '#7986AC',
   				'500': '#606C80',
-  				'600': '#2B3674',
+  				'600': '#19181D',
   				'700': '#384262'
   			},
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				DEFAULT: '#ed5e20',
+  				foreground: '#fff7f2'
   			},
   			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
+  				DEFAULT: '#ff944d',
+  				foreground: '#ed5e20'
   			},
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
@@ -70,6 +70,11 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			orange: {
+  				'500': '#d94e13', // darker orange
+  				'600': '#ed5e20', // original main orange
+  				'700': '#b54d21'  // even darker for hover/active if needed
   			}
   		},
   		fontFamily: {

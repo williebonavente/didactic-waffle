@@ -11,7 +11,7 @@ const IBMPlex = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Imaginify",
+  title: "UXhibit",
   description: "AI-powered image generator",
 };
 
@@ -21,16 +21,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <ClerkProvider
-        appearance={{
-          variables: { colorPrimary: '#624cf5' }
-          // cssLayerName: 'clerk'
-        }} 
-      >
-        <html lang="en">
-            <body
-            className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>
-        {/* <header className="flex justify-end items-center p-4 gap-4 h-16">
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: '#ed5e20'
+        },
+        layout: {
+          logoImageUrl: '/logo.png',
+        },
+        elements: {
+          logoBox: 'flex justify-center',
+          logoImage: 'w-32 h-10 object-contain', // set your desired width and height here
+        }
+
+      }}
+    >
+      <html lang="en">
+        <body
+          className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>
+          {/* <header className="flex justify-end items-center p-4 gap-4 h-16">
           <SignedOut>
             <SignInButton/>
               <SignUpButton>
@@ -43,10 +52,10 @@ export default function RootLayout({
               </SignedIn>
           </SignedOut>
         </header> */}
-        {children}
+          {children}
         </body>
-        </html>
-      </ClerkProvider>
-    );
-    
+      </html>
+    </ClerkProvider>
+  );
+
 }
