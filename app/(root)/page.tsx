@@ -4,7 +4,7 @@ import { getAllImages } from "@/lib/actions/image.action";
 import Image from "next/image";
 import Link from "next/link";
 
-const Home = async ({searchParams }: SearchParamProps) => {
+const Home = async ({searchParams }: { searchParams?: Record<string, string>} ) => {
   const params = searchParams;
   const page = Number(params?.page) || 1;
   const searchQuery =   (params?.query as string) || '';
