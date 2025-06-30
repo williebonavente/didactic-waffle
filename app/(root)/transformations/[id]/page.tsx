@@ -8,9 +8,13 @@ import { Button } from "@/components/ui/button";
 import { getImageById } from "@/lib/actions/image.action";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
-// import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
+import { redirect } from "next/navigation";
 
-const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
+const ImageDetails = async ({ params }: SearchParamProps) => {
+  const id  = params?.id;
+  if (!id) {
+    redirect('/404');
+  }
   const session = await auth();
   const userId = session?.userId;
   const image = await getImageById(id);
