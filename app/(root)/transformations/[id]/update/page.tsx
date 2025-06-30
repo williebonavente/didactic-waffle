@@ -7,7 +7,7 @@ import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.action";
 import { getImageById } from "@/lib/actions/image.action";
 
-const Page = async ({ params }: SearchParamProps) => {
+const Page = async ({ params }: any) => {
   const awaitedParams = await params;  
   const { id } = awaitedParams;
 

@@ -7,7 +7,7 @@ import Header from "@/components/shared/Header";
 import { getUserImages } from "@/lib/actions/image.action";
 import { getUserById } from "@/lib/actions/user.action";
 
-const Profile = async ({ searchParams }: SearchParamProps) => {
+const Profile = async ({ searchParams }: any) => {
   const page = Number(searchParams?.page) || 1;
   const session = await auth();
   const  userId  = session?.userId; 
