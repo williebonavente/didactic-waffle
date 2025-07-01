@@ -15,11 +15,7 @@ export const metadata: Metadata = {
   description: "AI-powered image generator",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <ClerkProvider
       appearance={{
@@ -31,27 +27,13 @@ export default function RootLayout({
         },
         elements: {
           logoBox: 'flex justify-center',
-          logoImage: 'w-32 h-10 object-contain', // set your desired width and height here
+          logoImage: 'w-32 h-10 object-contain', // Set the height and weight
         }
 
       }}
     >
       <html lang="en">
-        <body
-          className={cn("font-IBMPlex antialiased", IBMPlex.variable)}>
-          {/* <header className="flex justify-end items-center p-4 gap-4 h-16">
-          <SignedOut>
-            <SignInButton/>
-              <SignUpButton>
-              <button className="bg-[#6c47ff] text-white rounded-full font-medium text:sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                Sign Up
-              </button>
-              </SignUpButton>
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-          </SignedOut>
-        </header> */}
+        <body>
           {children}
         </body>
       </html>

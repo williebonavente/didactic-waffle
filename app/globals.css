@@ -89,7 +89,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground !important; */
+    @apply text-foreground !important;
   }
 }
 
@@ -399,4 +400,12 @@
   font-size: 16px;
   font-weight: 600;
   color: #384262;
+}
+
+
+/* custom background */
+.auth-bg {
+  background-image: url('/assets/images/banner-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
