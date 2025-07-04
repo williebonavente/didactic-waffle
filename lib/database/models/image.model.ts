@@ -14,8 +14,9 @@ export interface IImage extends Document {
     prompt?: string;
     author: {
         _id: string;
-        firstname: string;
-        lastname: string;
+        username: string
+        firstName: string;
+        lastName: string;
     };
     createdAt?: Date;
     uploadedAt?: Date;
@@ -38,6 +39,8 @@ const ImageSchema = new Schema ({
     author: { type: Schema.Types.ObjectId, ref: 'User'},
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
+    // Added filed
+    hidden: { type: Boolean, default: false}
 });
 
 const Image = models?.Image || model('Image', ImageSchema);

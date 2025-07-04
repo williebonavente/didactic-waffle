@@ -5,27 +5,27 @@ export const navLinks = [
     icon: "/assets/icons/home.svg",
   },
   {
-    label: "Image Restore",
+    label: "Restore Image",
     route: "/transformations/add/restore",
     icon: "/assets/icons/image.svg",
   },
   {
-    label: "Generative Fill",
+    label: "Fill Generative",
     route: "/transformations/add/fill",
     icon: "/assets/icons/stars.svg",
   },
   {
-    label: "Object Remove",
+    label: "Remove Object",
     route: "/transformations/add/remove",
     icon: "/assets/icons/scan.svg",
   },
   {
-    label: "Object Recolor",
+    label: "Recolor Object",
     route: "/transformations/add/recolor",
     icon: "/assets/icons/filter.svg",
   },
   {
-    label: "Background Remove",
+    label: "Remove Background",
     route: "/transformations/add/removeBackground",
     icon: "/assets/icons/camera.svg",
   },
@@ -34,6 +34,7 @@ export const navLinks = [
     route: "/profile",
     icon: "/assets/icons/profile.svg",
   },
+  
   {
     label: "Buy Credits",
     route: "/credits",
@@ -47,10 +48,10 @@ export const plans = [
     name: "Free",
     icon: "/assets/icons/free-plan.svg",
     price: 0,
-    credits: 20,
+    credits: 10,
     inclusions: [
       {
-        label: "20 Free Credits",
+        label: "10 Free Credits",
         isIncluded: true,
       },
       {

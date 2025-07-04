@@ -40,7 +40,8 @@ export const formSchema = z.object({
     aspectRatio: z.string().optional(),
     color: z.string().optional(),
     prompt: z.string().optional(),
-    publicId: z.string()
+    publicId: z.string(),
+    hidden: z.boolean().optional(),
 })
 
 const TransformationForm = ({ action, data = null, userId, type, creditBalance, config = null }:
@@ -62,7 +63,9 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         color: data?.color,
         prompt: data?.prompt,
         publicId: data?.publicId,
-    } : defaultValues
+        // TODO: Hidden values
+        hidden: data?.hidden ?? false,
+    } : { ...defaultValues, hidden: false };
     // 1. Define the form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -199,8 +202,25 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                     formLabel="Image Title"
                     className="w-full"
                     render={({ field }) => <Input {...field}
-                        className="input-field" />}
+                        className="input-field"
+                        required
+                    />}
                 />
+                {/* Hide functionality  */}
+                {/* <CustomField
+                    control={form.control}
+                    name="hidden"
+                    formLabel="Hide this image from homepage"
+                    className="w-full"
+                    render={({ field }) => (
+                        <Input
+                            type="checkbox"
+                            checked={field.value}
+                            onChange={e => field.onChange(e.target.checked)}
+                            className="mr-2"
+                        />
+                    )}
+                /> */}
                 {type === 'fill' && (
                     <CustomField
                         control={form.control}
@@ -211,7 +231,8 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                             <Select
                                 onValueChange={(value) =>
                                     onSelectFieldHandler(value, field.onChange)}
-                                    value={field.value}
+                                value={field.value}
+                                required={true}
                             >
                                 <SelectTrigger className="select-field">
                                     <SelectValue placeholder="Select size" />
@@ -275,6 +296,8 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
                 )}
 
                 <div className="media-uploader-field">
+
+
                     <CustomField
                         control={form.control}
                         name="publicId"
@@ -301,17 +324,23 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
 
                 </div>
                 <div className="flex flex-col gap-4">
+                    {/* Show error if no image is uploaded */}
                     <Button
                         type="button"
                         className="submit-button capitalize"
-                        disabled={isTransforming || newTransformation === null}
+                        disabled={isTransforming ||
+                            newTransformation === null ||
+                            !image || !image.publicId
+                        }
                         onClick={onTransformHandler}
                     >
                         {isTransforming ? 'Transforming...' : 'Apply Transformation'}
                     </Button>
                     <Button
                         className="submit-button capitalize"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || isTransforming ||
+                            !image?.publicId || !transformationConfig
+                        }
                         type="submit">{isSubmitting ? 'Submitting' : 'Save Image'}</Button>
                 </div>
             </form>

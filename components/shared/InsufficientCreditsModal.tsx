@@ -49,7 +49,7 @@ export const InsufficientCreditsModal = () => {
           </AlertDialogTitle>
 
           <AlertDialogDescription className="p-16-regular py-3">
-            No worries, though - you can keep enjoying our services by grabbing
+            No worries, though - you can keep enjoying our services by purchasing
             more credits.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -61,7 +61,7 @@ export const InsufficientCreditsModal = () => {
             No, Cancel
           </AlertDialogCancel>
           <AlertDialogAction
-            className="button w-full bg-purple-gradient  bg-cover"
+              className="button w-full bg-green-300 text-dark-600 hover:bg-green-600 hover:text-white"
             onClick={() => router.push("/credits")}
           >
             Yes, Proceed

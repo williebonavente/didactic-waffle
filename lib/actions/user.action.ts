@@ -94,3 +94,17 @@ export async function updateCredits(userId: string, creditFee: number) {
     handleError(error);
   }
 }
+
+// GET ALL users
+
+export async function getAllUsers() {
+  try {
+    await connectToDatabase();
+
+    const users = await User.find({});
+    return JSON.parse(JSON.stringify(users));
+    
+  } catch (error) {
+    handleError(error); 
+  }
+}

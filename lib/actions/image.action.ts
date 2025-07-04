@@ -11,14 +11,14 @@ import { redirect } from "next/navigation";
 const populateUser = (query: any) => query.populate({
     path: 'author',
     model: User,
-    select: '_id firstName lastName clerkId'
+    select: '_id firstName username lastName clerkId'
 })
 
 // ADD IMAGE
 export async function addImage({ image, userId, path }: AddImageParams) {
     try {
         await connectToDatabase();
-
+        // TO GET The number of images uploaded
         const author = await User.findById(userId);
 
         if (!author) {
@@ -31,6 +31,7 @@ export async function addImage({ image, userId, path }: AddImageParams) {
         })
 
         revalidatePath(path);
+        await User.findByIdAndUpdate(userId, { $inc: { uploadsCount: 1 } });
 
         return JSON.parse(JSON.stringify(newImage));
 
@@ -103,7 +104,6 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
     try {
         await connectToDatabase();
 
-
         // Searching 
         cloudinary.config({
             cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -112,7 +112,7 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
             secure: true
         })
 
-        let expression = 'folder=imaginify';
+        let expression = 'folder=uxhibit';
 
         if (searchQuery) {
             expression += ` AND tags=${searchQuery}`
@@ -123,13 +123,35 @@ export async function getAllImages({ limit = 9, page = 1, searchQuery = '' }: {
 
         let query = {};
 
+        // if (searchQuery) {
+        //     query = {
+
+        //             $or: [
+        //                 { publicId: { $in: resourceIds } },
+        //                 {
+        //                     title: { $regex: searchQuery, $options: 'i' },
+
+        //                 }
+        //             ]
+        //         }
+        // }
+
+
+        // Add the hide functionality
         if (searchQuery) {
             query = {
-                $or: [
-                    { publicId: { $in: resourceIds } },
-                    { title: { $regex: searchQuery, $options: 'i' } }
+                $and: [
+                    { hidden: { $ne: true } },
+                    {
+                        $or: [
+                            { publicId: { $in: resourceIds } },
+                            { title: { $regex: searchQuery, $options: 'i' } }
+                        ]
+                    }
                 ]
-            }
+            };
+        } else {
+            query = { hidden: { $ne: true } };
         }
 
         // Pagination

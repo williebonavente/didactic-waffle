@@ -57,7 +57,7 @@ const Credits = async () => {
                             </ul>
 
                             {plan.name === "Free" ? (
-                                <Button variant="outline" className="credits-btn">
+                                <Button className="credits-btn-no-hover">
                                     Free Consumable
                                 </Button>
                             ) : (

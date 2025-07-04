@@ -16,6 +16,8 @@ import { IImage } from "@/lib/database/models/image.model";
 import { formUrlQuery } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Search } from "./Search";
+import { Images } from "lucide-react";
+
 
 export const Collection = ({
   hasSearch = false,
@@ -54,7 +56,7 @@ export const Collection = ({
       {images.length > 0 ? (
         <ul className="collection-list">
           {images.map((image) => (
-            <Card image={image} key={String((image as {_id: string})._id)} />
+            <Card image={image} key={String((image as { _id: string })._id)} />
           ))}
         </ul>
       ) : (
@@ -79,7 +81,7 @@ export const Collection = ({
             </p>
 
             <Button
-              className="button w-32 bg-purple-gradient bg-cover text-white"
+              className="button w-32 bg-gradient-to-r from-orange-500 to-orange-600 bg-cover text-white"
               onClick={() => onPageChange("next")}
               disabled={Number(page) >= totalPages}
             >
@@ -93,6 +95,7 @@ export const Collection = ({
 };
 
 const Card = ({ image }: { image: IImage }) => {
+  const { author } = image;
   return (
     <li>
       <Link href={`/transformations/${image._id}`} className="collection-card">
@@ -107,15 +110,22 @@ const Card = ({ image }: { image: IImage }) => {
           sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
         />
         <div className="flex-between">
-          <p className="p-20-semibold mr-3 line-clamp-1 text-dark-600">
-            {image.title}
-          </p>
+          <div className="flex flex-col">
+
+            <p className="p-20-semibold mr-3 line-clamp-1 text-dark-600">
+              {image.title}
+            </p>
+            <div className="text-base text-black mt-2">
+              {author && author.username
+                ? `Uploaded by: ${author.username}`
+                : "Unknown Author"}
+            </div>
+          </div>
           <Image
-            src={`/assets/icons/${
-              transformationTypes[
-                image.transformationType as TransformationTypeKey
-              ].icon
-            }`}
+            src={`/assets/icons/${transformationTypes[
+              image.transformationType as TransformationTypeKey
+            ].icon
+              }`}
             alt={image.title}
             width={24}
             height={24}

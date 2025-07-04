@@ -46,6 +46,12 @@
     --chart-4: 43 74% 66%;
 
     --chart-5: 27 87% 67%;
+/* 
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439); */
   }
 
   .dark {
@@ -81,6 +87,13 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+
+    /* --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439); */
   }
 }
 
@@ -257,6 +270,10 @@
 
   .credits-btn {
     @apply w-full rounded-full bg-orange-600 bg-cover text-purple-100 hover:text-purple-500;
+  }
+
+  .credits-btn-no-hover {
+  @apply w-full rounded-full bg-purple-100 bg-cover text-dark-600 cursor-default !important;
   }
 
   /* Profile Page */

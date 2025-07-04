@@ -34,7 +34,6 @@ const MediaUploader = ({
         toast(
             <div>
                 <span className="font-bold">Image Upload successfully.</span>
-                <p>1 Credit was deducted from your account.</p>
             </div>,
 
             {

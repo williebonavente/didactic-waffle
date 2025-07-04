@@ -11,14 +11,13 @@ import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 import { redirect } from "next/navigation";
 
 const ImageDetails = async ({ params }: SearchParamProps) => {
-  const id  = (await params)?.id;
+  const id = (await params)?.id;
   if (!id) {
     redirect('/404');
   }
   const session = await auth();
   const userId = session?.userId;
   const image = await getImageById(id);
-
   return (
     <>
       <Header title={image.title} />
@@ -28,6 +27,13 @@ const ImageDetails = async ({ params }: SearchParamProps) => {
           <p className="text-dark-600">Transformation:</p>
           <p className=" capitalize text-purple-400">
             {image.transformationType}
+          </p>
+        </div>
+        {/* Insert Creator here */}
+        <div className="p-14-medium md:p-16-medium flex gap-2">
+          <p className="text-dark-600">Creator:</p>
+          <p className=" capitalize text-purple-400">
+            {image.author.username}
           </p>
         </div>
 

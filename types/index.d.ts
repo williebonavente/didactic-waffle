@@ -140,3 +140,10 @@ declare type TransformedImageProps = {
   hasDownload?: boolean;
   setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+
+// ANALYTICS
+declare type AnalyticsItem = {
+  userId: string
+  action: string
+};
